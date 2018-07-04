@@ -8,3 +8,5 @@ ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3', #...using Sqlite3 adapter
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite" #to the appropriate database based upon the environment, found in the db folder.
 )
+
+require_all 'app'
