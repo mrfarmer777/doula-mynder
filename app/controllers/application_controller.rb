@@ -70,7 +70,16 @@ class ApplicationController<Sinatra::Base
   get "/users/:id" do
     if logged_in?
       @user=User.find(params[:id])
-      erb :'users/dashboard'
+      erb :'users/profile'
+    else
+      flash[:message]="Please log in to see all available doulas."
+      redirect "/login"
+    end
+  end
+
+  get "/users" do
+    if logged_in?
+      erb :'users/index'
     else
       redirect "/login"
     end

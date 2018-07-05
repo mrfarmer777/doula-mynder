@@ -1,0 +1,9 @@
+<h1>Doula-Mynder Doulas</h1>
+<a href="/dashboard">Dashboard</a>
+<ul>
+  <%User.all.each do |user|%>
+    <li>
+      <a href="/users/<%=user.id%>"><%=user.name%> (<%=user.company_name%>)</a>
+    </li>
+  <%end%>
+</ul>
