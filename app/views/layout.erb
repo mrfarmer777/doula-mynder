@@ -10,7 +10,7 @@
       <a class="navbar-brand" href="/">Doula Mynder</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id ="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
           <%if logged_in?%>
             <li class="nav-item">
               <a class="nav-link" href="/dashboard">Dashboard</a>
@@ -25,12 +25,12 @@
               <a class="nav-link" href="/logout">Logout</a>
             </li>
           <%else%>
-          <li class="nav-item">
-            <a class="nav-link" href="/signup">Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
           <%end%>
         </ul>
       </div> <!--collapse -->
