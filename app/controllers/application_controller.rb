@@ -110,6 +110,7 @@ class ApplicationController<Sinatra::Base
     if logged_in? && current_user==@client.user
       erb :"clients/view"
     else
+      flash[:message]="Error: You may only view your own clients"
       redirect "/dashboard"
     end
   end
@@ -120,6 +121,7 @@ class ApplicationController<Sinatra::Base
     if logged_in? && current_user==@client.user
       erb :"clients/edit"
     else
+      flash[:message]="Error: You may only edit your own clients"
       redirect "/dashboard"
     end
   end
