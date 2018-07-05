@@ -67,4 +67,22 @@ describe ApplicationController do
     end
 
   end
+
+  describe "Login Page" do
+    it "loads the login form" do
+      get "/login"
+      expect(last_response.status).to eq(200)
+    end
+
+    it "logs in a valid user when credentials are correct" do
+      user=User.create(username:'sallyride',name:"Sally Ride",company_name:"Rocket Doulas",password:"password")
+
+      visit "/login"
+      fill_in(:username, :with =>"sallyride")
+      fill_in(:password, :with =>"password")
+      click_button "submit"
+      expect(page.body).to include('Welcome,')
+    end
+
+  end
 end

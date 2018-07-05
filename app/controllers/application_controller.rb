@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController<Sinatra::Base
 
@@ -7,6 +8,7 @@ class ApplicationController<Sinatra::Base
     set :views, "app/views"
     enable :sessions
     set :session_secret, "gigijuju"
+    use Rack::Flash
   end
 
   get '/' do
@@ -46,9 +48,10 @@ class ApplicationController<Sinatra::Base
   post "/login" do
     @user=User.find_by(username:params[:username])
     if @user && @user.authenticate(params[:password])
-      session[:user_id]=user.id
+      session[:user_id]=@user.id
       redirect "/dashboard"
     else
+      flash[:message]="Incorrect username or password. Please try again"
       redirect "/login"
     end
   end
@@ -57,7 +60,7 @@ class ApplicationController<Sinatra::Base
   get "/dashboard" do
     if logged_in?
       @user=current_user
-      erb :"users/dashboard"
+      erb :'users/dashboard'
     else
       redirect "/login"
     end
