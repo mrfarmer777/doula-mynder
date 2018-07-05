@@ -82,6 +82,8 @@ class ApplicationController<Sinatra::Base
   end
 
   #//////////////CLIENT ACTIONS///////////
+
+  #Create
   get "/clients/new" do
     if logged_in?
       erb :'clients/new'
@@ -102,6 +104,7 @@ class ApplicationController<Sinatra::Base
     end
   end
 
+  #Read
   get "/clients/:id" do
     @client=Client.find(params[:id])
     if logged_in? && current_user==@client.user
@@ -109,6 +112,30 @@ class ApplicationController<Sinatra::Base
     else
       redirect "/dashboard"
     end
+  end
+
+  #update
+  get "/clients/:id/edit" do
+    @client=Client.find(params[:id])
+    if logged_in? && current_user==@client.user
+      erb :"clients/edit"
+    else
+      redirect "/dashboard"
+    end
+  end
+
+  patch "/clients/:id" do
+    @client=Client.find(params[:id])
+    if logged_in? && current_user==@client.user
+      if params[:client][:name].empty?
+        flash[:message]="Client must have a name"
+        redirect "/clients/#{@client.id}/edit"
+      else
+        @client.update(params[:client])
+        @client.save
+      end
+    end
+    redirect "/dashboard"
   end
 
   #//////////////HELPERS/////////////////

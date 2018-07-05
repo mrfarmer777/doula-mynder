@@ -1,0 +1,20 @@
+<h2>Now Editing <%=@client.name%>...</h2>
+<a href="/dashboard">Cancel</a><hr />
+<%if flash.has?(:message)%>
+<p>
+  <%=flash[:message]%>
+</p>
+<%end%>
+<form method="POST" action="/clients/<%=@client.id%>">
+  <input type='hidden' id='hidden' name="_method" value="PATCH" />
+  <label for="client[name]">Client Name: </label>
+  <input type="text" name="client[name]" id="client_name" value="<%=@client.name%>"/><br />
+  <label for="client[age]">Age: </label>
+  <input type="number" name="client[age]" id="client_age" value="<%=@client.age%>"/><br />
+  <label for="client[partner_name]">Partner Name: </label>
+  <input type="text" name="client[partner_name]" id="client_partner_name" value="<%=@client.partner_name%>"/><br />
+  <label for="client[address]">Address: </label>
+  <input type="text" name="client[address]" id="client_address"value="<%=@client.address%>" /><br />
+  <label for="client[num_children]">Number of Children: </label>
+  <input type="text" name="client[num_children]" id="client_num_children" value="<%=@client.num_children%>"/><br />
+  <input type="submit" value="Update Client" id="submit" />
