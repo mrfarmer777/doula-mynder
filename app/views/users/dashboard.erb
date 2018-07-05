@@ -11,7 +11,7 @@
   <%current_user.clients.each do |client|%>
 
     <li>
-      <%=client.name%> and <%=client.partner_name%>
+      <a href ="/clients/<%=client.id%>"><%=client.name%> and <%=client.partner_name%></a>
     </li>
   <%end%>
 </ul>

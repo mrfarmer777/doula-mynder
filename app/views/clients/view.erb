@@ -1,0 +1,21 @@
+<a href="/dashboard">Dashboard</a>
+<a href="/clients/<%=@client.id%>/edit">Edit Client</a>
+<h2><%=@client.name%></h2>
+<p>
+  Due Date: <!--todo-->
+</p>
+
+<div class="client-basics">
+  <p id="age">Age: <%=@client.age%></p>
+  <p id="partner_name">Partner Name: <%=@client.partner_name%></p>
+  <p id="address">Address: <%=@client.address%></p>
+  <p id="num_children">Number of Children: <%=@client.num_children%></p>
+</div>
+
+<div class="client-active-entries">
+  <h3>Active Entries:</h3>
+</div>
+
+<div class="client-previous-births">
+  <h3>Previous Births</h3>
+</div>

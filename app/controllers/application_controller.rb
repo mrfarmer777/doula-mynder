@@ -102,6 +102,15 @@ class ApplicationController<Sinatra::Base
     end
   end
 
+  get "/clients/:id" do
+    @client=Client.find(params[:id])
+    if logged_in? && current_user==@client.user
+      erb :"clients/view"
+    else
+      redirect "/dashboard"
+    end
+  end
+
   #//////////////HELPERS/////////////////
   helpers do
     def logged_in?
