@@ -81,7 +81,14 @@ class ApplicationController<Sinatra::Base
     redirect "/"
   end
 
-
+  #//////////////CLIENT ACTIONS///////////
+  get "/clients/new" do
+    if logged_in?
+      erb :'clients/new'
+    else
+      redirect "/login"
+    end
+  end
 
   #//////////////HELPERS/////////////////
   helpers do
