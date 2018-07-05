@@ -81,7 +81,7 @@ describe ApplicationController do
       fill_in(:username, :with =>"sallyride")
       fill_in(:password, :with =>"password")
       click_button "submit"
-      expect(page.body).to include('Welcome,')
+      expect(page.body).to include("Welcome #{user.name}")
     end
 
     it "redirects to login with message when credentials are missing or incorrect" do
@@ -91,8 +91,33 @@ describe ApplicationController do
       fill_in(:username, :with =>"sallyride")
       fill_in(:password, :with =>"sharkfarts")
       click_button "submit"
-      expect(page.body).to include('Inccorect username or password')
+      expect(page.body).to include('Incorrect username or password')
     end
 
+    it "redirects to login with message when username is missing or incorrect" do
+      user=User.create(username:'sallyride',name:"Sally Ride",company_name:"Rocket Doulas",password:"password")
+
+      visit "/login"
+      fill_in(:username, :with =>"")
+      fill_in(:password, :with =>"sharkfarts")
+      click_button "submit"
+      expect(page.body).to include('Incorrect username or password')
+    end
+  end
+
+  describe "New Client Form" do
+    it "creates a new client and returns to updated dashboard view" do
+      user=User.create(username:'sallyride',name:"Sally Ride",company_name:"Rocket Doulas",password:"password")
+      visit "/login"
+      fill_in(:username, :with =>"sallyride")
+      fill_in(:password, :with =>"password")
+      click_button "submit"
+
+      visit '/clients/new'
+      fill_in(client_name:"Janis",age:34,partner:"Phil",address:"1254 Cloverfield Ln, Newark, NJ",children:2)
+      click_button "submit"
+      expect(page.body).to include("Janis")
+      expect(Client.all.last.name).to eq("Janis")
+    end
   end
 end
