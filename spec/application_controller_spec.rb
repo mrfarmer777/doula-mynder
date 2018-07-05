@@ -49,5 +49,22 @@ describe ApplicationController do
       expect(new_user_count).to eq(user_count)
     end
 
+    it "redirects to login when form submitted with empty password" do
+      user_count=User.all.count
+
+      params={
+        name: "Sally Ride",
+        username: "username",
+        email: "sally@ride.com",
+        password: "",
+        company_name: "Rocket Doula",
+      }
+
+      post "/signup", params
+      new_user_count=User.all.count
+      expect(last_response.location).to include("/signup")
+      expect(new_user_count).to eq(user_count)
+    end
+
   end
 end
