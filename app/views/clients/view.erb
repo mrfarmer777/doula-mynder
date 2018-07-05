@@ -19,3 +19,9 @@
 <div class="client-previous-births">
   <h3>Previous Births</h3>
 </div>
+
+
+<form method="POST" action="/clients/<%=@client.id%>">
+  <input type='hidden' id='hidden' name='_method' value="DELETE" />
+  <input type="submit" value="Delete Client" id="submit" />
+</form>

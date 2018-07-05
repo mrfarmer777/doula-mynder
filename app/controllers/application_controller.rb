@@ -138,6 +138,19 @@ class ApplicationController<Sinatra::Base
     redirect "/dashboard"
   end
 
+  #Delete
+  delete "/clients/:id" do
+    @client=Client.find(params[:id])
+    if logged_in? && current_user==@client.user
+      client_name=@client.name
+      @client.destroy
+      flash[:message]="Client #{client_name} deleted!"
+    else
+      flash[:message]="Cannot delete a client that is not yours."
+    end
+    redirect "/dashboard"
+  end
+
   #//////////////HELPERS/////////////////
   helpers do
     def logged_in?
