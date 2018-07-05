@@ -84,5 +84,15 @@ describe ApplicationController do
       expect(page.body).to include('Welcome,')
     end
 
+    it "redirects to login with message when credentials are missing or incorrect" do
+      user=User.create(username:'sallyride',name:"Sally Ride",company_name:"Rocket Doulas",password:"password")
+
+      visit "/login"
+      fill_in(:username, :with =>"sallyride")
+      fill_in(:password, :with =>"sharkfarts")
+      click_button "submit"
+      expect(page.body).to include('Inccorect username or password')
+    end
+
   end
 end

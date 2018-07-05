@@ -1,3 +1,3 @@
-class Client<ActiveRecord::base
+class Client<ActiveRecord::Base
   belongs_to :user
 end
