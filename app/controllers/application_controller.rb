@@ -90,6 +90,18 @@ class ApplicationController<Sinatra::Base
     end
   end
 
+  post "/clients" do
+    if !params[:client][:name].empty?
+      @client=Client.create(params[:client])
+      @client.user_id=current_user.id
+      @client.save
+      redirect "/dashboard"
+    else
+      flash[:message]="New clients must have a name"
+      redirect "/clients/new"
+    end
+  end
+
   #//////////////HELPERS/////////////////
   helpers do
     def logged_in?

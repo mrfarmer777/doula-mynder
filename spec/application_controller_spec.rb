@@ -114,7 +114,11 @@ describe ApplicationController do
       click_button "submit"
 
       visit '/clients/new'
-      fill_in(client_name:"Janis",age:34,partner:"Phil",address:"1254 Cloverfield Ln, Newark, NJ",children:2)
+      fill_in(:client_name, :with=>"Janis")
+      fill_in(:client_age, :with=>34)
+      fill_in(:client_partner_name, :with=>"Chanandelor Bong")
+      fill_in(:client_address, :with=>"123 W. Elm St., Montana, NB")
+      fill_in(:client_num_children, :with=>5)
       click_button "submit"
       expect(page.body).to include("Janis")
       expect(Client.all.last.name).to eq("Janis")
