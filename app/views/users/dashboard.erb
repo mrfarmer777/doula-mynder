@@ -39,11 +39,14 @@
   </thead>
   <tbody>
     <%get_sorted_clients(current_user).each do |client|%>
-      <tr class="<%=get_progress(client).split(" ").first.to_i>40? 'table-warning':''%>"">
-        <!--very ugly, but works for now!-->
+      <%weeks=get_progress(client).split(" ").first.to_i%>
+      <tr class="<%=weeks>40? 'table-warning':''%>">
+
         <th scope="row"><%=client.name%></th>
         <td>
-          <%=get_progress(client)%>
+          <div class="progress">
+            <div class="progress-bar" style="width:<%=100*weeks/42%>%"><%=get_progress(client)%>
+          </div>
           <!--Abstracted this to a helper method
           <% if !client.due_date.nil? %>
             <%=42-(client.due_date.cweek-DateTime.now.cweek)%> Weeks
