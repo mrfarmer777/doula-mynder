@@ -193,6 +193,15 @@ end
     def current_user
       User.find(session[:user_id])
     end
+
+    def get_progress(client)
+      if !client.due_date.nil?
+        progress=42-(client.due_date.cweek-DateTime.now.cweek+(52*(client.due_date.year-DateTime.now.year)))
+      else
+        progress=0
+      end
+      "#{progress} weeks"
+    end
   end
 
 

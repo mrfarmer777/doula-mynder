@@ -42,11 +42,15 @@
       <tr>
         <th scope="row"><%=client.name%></th>
         <td>
+          <%=get_progress(client)%>
+          <!--Abstracted this to a helper method
           <% if !client.due_date.nil? %>
             <%=42-(client.due_date.cweek-DateTime.now.cweek)%> Weeks
           <%else%>
 
           <%end%>
+
+        -->
         </td>
         <td><%=client.age%></td>
         <td><%=client.due_date%></td>
