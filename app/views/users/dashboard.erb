@@ -20,7 +20,6 @@
   </div>
   <div class="col-md-6 btn-group ml-auto" id="client_controls">
     <a class="btn btn-primary" href="/clients/new">New Client</a>
-    <a class="btn btn-primary" href="/births/new">New Birth</a>
     <a class="btn btn-secondary" href="/users">View Doulas</a>
   </div>
 </div>
@@ -44,7 +43,7 @@
         <th scope="row"><%=client.name%></th>
         <td>
           <% if !client.due_date.nil? %>
-            <%=client.due_date.cweek-DateTime.now.cweek%> Weeks
+            <%=42-(client.due_date.cweek-DateTime.now.cweek)%> Weeks
           <%else%>
 
           <%end%>
@@ -56,6 +55,7 @@
           <div class="btn-group btn-group-sm">
             <a href="/clients/<%=client.id%>" class="btn btn-secondary">View</a>
             <a href="/clients/<%=client.id%>/edit" class="btn btn-secondary">Edit</a>
+            <a href="/clients/<%=client.id%>/delete" class="btn btn-danger">Delete</a>
           </div>
         </td>
       </tr>
