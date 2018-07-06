@@ -9,6 +9,7 @@ body{
 .container {
   background-color:#ccc;
   margin-top:20px;
+  padding:10px 10px;
 }
 
 .row{

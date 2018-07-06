@@ -1,14 +1,22 @@
-<div class="row">
-  <h1>Dashboard</h1>
+<div class="row" >
+  <div class="col">
+    <h2>Dashboard</h2>
+  </div>
 </div>
 <%if flash.has?(:message)%>
 <p>
   <%=flash[:message]%>
 </p>
 <%end%>
+<div class="row" id="user_name">
+  <div class="col">
+    <h5><%=current_user.name%></h5>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-6" id="user_data">
-    <%=current_user.name%> (<%=current_user.company_name%>) (<%=current_user.clients.count%> active client<%=current_user.clients.count==1? "":"s"%>)
+    <%=current_user.company_name%> (<%=current_user.clients.count%> active client<%=current_user.clients.count==1? "":"s"%>)
   </div>
   <div class="col-md-6 btn-group ml-auto" id="client_controls">
     <a class="btn btn-primary" href="/clients/new">New Client</a>
@@ -34,7 +42,13 @@
     <%current_user.clients.each do |client|%>
       <tr>
         <th scope="row"><%=client.name%></th>
-        <td><%=client.due_date.cweek-DateTime.now.cweek%> Weeks</td>
+        <td>
+          <% if !client.due_date.nil? %>
+            <%=client.due_date.cweek-DateTime.now.cweek%> Weeks
+          <%else%>
+
+          <%end%>
+        </td>
         <td><%=client.age%></td>
         <td><%=client.due_date%></td>
         <td><span>CODE</span></td>
@@ -48,7 +62,3 @@
     <%end%>
   </tbody>
 </table>
-
-</ul>
-
-<a href ="/logout">Log out</a>
