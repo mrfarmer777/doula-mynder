@@ -85,6 +85,28 @@ class ApplicationController<Sinatra::Base
     end
   end
 
+  #update action
+  #update action
+get "/users/:id/edit" do
+  if current_user.id==params[:id].to_i
+    erb :'users/edit'
+  else
+    redirect "/login"
+  end
+end
+
+patch "/users/:id" do
+  if current_user.id==params[:id].to_i
+    @user=User.find(params[:id])
+    @user.update(name:params[:name],email:params[:email],company_name:params[:company_name])
+    @user.save #?redundant?
+    redirect "/dashboard"
+  else
+    flash[:message]="Cannot edit others' profiles."  #?passing this to further calls?
+    redirect "/login"
+  end
+end
+
   get "/logout" do
     session.delete(:user_id)
     redirect "/"
