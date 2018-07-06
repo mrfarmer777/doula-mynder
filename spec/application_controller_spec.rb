@@ -81,7 +81,8 @@ describe ApplicationController do
       fill_in(:username, :with =>"sallyride")
       fill_in(:password, :with =>"password")
       click_button "submit"
-      expect(page.body).to include("Welcome #{user.name}")
+      expect(page.body).to include("#{user.name}")
+      expect(page.body).to include("Dashboard")
     end
 
     it "redirects to login with message when credentials are missing or incorrect" do

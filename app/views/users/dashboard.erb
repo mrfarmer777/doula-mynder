@@ -1,5 +1,14 @@
-<h1>Welcome <%=current_user.name%></h1>
-<h2><%=current_user.company_name%></h2>
+<div class="row">
+  <h1>Dashboard</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6" id="user_data">
+    <h3><%=current_user.name%></h3>
+    <h3><%=current_user.company_name%></h3>
+  </div>
+</div>
+
 <%if flash.has?(:message)%>
 <p>
   <%=flash[:message]%>
