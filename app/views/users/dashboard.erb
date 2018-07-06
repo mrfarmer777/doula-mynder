@@ -1,34 +1,54 @@
 <div class="row">
   <h1>Dashboard</h1>
 </div>
-
-<div class="row">
-  <div class="col-md-6" id="user_data">
-    <h3><%=current_user.name%></h3>
-    <h3><%=current_user.company_name%></h3>
-  </div>
-</div>
-
 <%if flash.has?(:message)%>
 <p>
   <%=flash[:message]%>
 </p>
 <%end%>
-<p>
-  <%=current_user.clients.count%> active clients
-</p>
-<div>
-  <a href="/clients/new">New Client</a>
-  <a href="/births/new">New Birth</a>
-  <a href="/users">View Doulas</a>
+<div class="row">
+  <div class="col-md-6" id="user_data">
+    <%=current_user.name%> (<%=current_user.company_name%>) (<%=current_user.clients.count%> active client<%=current_user.clients.count==1? "":"s"%>)
+  </div>
+  <div class="col-md-6 btn-group ml-auto" id="client_controls">
+    <a class="btn btn-primary" href="/clients/new">New Client</a>
+    <a class="btn btn-primary" href="/births/new">New Birth</a>
+    <a class="btn btn-secondary" href="/users">View Doulas</a>
+  </div>
 </div>
-<ul>
-  <%current_user.clients.each do |client|%>
+<div>
 
-    <li>
-      <a href ="/clients/<%=client.id%>"><%=client.name%> and <%=client.partner_name%></a>
-    </li>
-  <%end%>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Client Name</th>
+      <th scope="col">Progress</th>
+      <th scope="col">Age</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Notes</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%current_user.clients.each do |client|%>
+      <tr>
+        <th scope="row"><%=client.name%></th>
+        <td><%=client.due_date.cweek-DateTime.now.cweek%> Weeks</td>
+        <td><%=client.age%></td>
+        <td><%=client.due_date%></td>
+        <td><span>CODE</span></td>
+        <td>
+          <div class="btn-group btn-group-sm">
+            <a href="/clients/<%=client.id%>" class="btn btn-secondary">View</a>
+            <a href="/clients/<%=client.id%>/edit" class="btn btn-secondary">Edit</a>
+          </div>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+
 </ul>
 
 <a href ="/logout">Log out</a>

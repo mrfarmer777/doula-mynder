@@ -1,3 +1,16 @@
-h1 {
-  color:red;
+body{
+  background-color:lavender;
+}
+
+.navbar{
+  background-color:white;
+}
+
+.container {
+  background-color:#ccc;
+  margin-top:20px;
+}
+
+.row{
+  margin-bottom: 10px;
 }
