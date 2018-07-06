@@ -202,6 +202,11 @@ end
       end
       "#{progress} weeks"
     end
+
+    def get_sorted_clients(user)
+      sorted=user.clients.sort_by {|client| client["due_date"]}
+      sorted
+    end
   end
 
 

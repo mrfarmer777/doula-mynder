@@ -38,8 +38,9 @@
     </tr>
   </thead>
   <tbody>
-    <%current_user.clients.each do |client|%>
-      <tr>
+    <%get_sorted_clients(current_user).each do |client|%>
+      <tr class="<%=get_progress(client).split(" ").first.to_i>40? 'table-warning':''%>"">
+        <!--very ugly, but works for now!-->
         <th scope="row"><%=client.name%></th>
         <td>
           <%=get_progress(client)%>
