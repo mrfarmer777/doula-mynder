@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20180706022419) do
 
   create_table "clients", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "age"
-    t.string   "partner_name"
-    t.string   "address"
-    t.integer  "num_children"
-    t.integer  "user_id"
-    t.datetime "due_date"
+    t.string  "name"
+    t.integer "age"
+    t.string  "partner_name"
+    t.string  "address"
+    t.integer "num_children"
+    t.integer "user_id"
+    t.date    "due_date"
   end
 
   create_table "users", force: :cascade do |t|
