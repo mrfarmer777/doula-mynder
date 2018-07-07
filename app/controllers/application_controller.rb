@@ -29,8 +29,13 @@ class ApplicationController<Sinatra::Base
   post "/signup" do
     if !params[:username].empty? && !params[:password].empty?
       @user=User.create(params)
-      session[:user_id]=@user.id
-      redirect "/dashboard"
+      if @user.id.nil?
+        flash[:message]="That username is already in use by another user"
+        redirect "/signup"
+      else
+        session[:user_id]=@user.id
+        redirect "/dashboard"
+      end
     else
       redirect "/signup"
     end
