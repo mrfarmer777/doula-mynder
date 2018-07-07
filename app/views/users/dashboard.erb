@@ -5,7 +5,7 @@
     </div>
   </div>
   <%if flash.has?(:message)%>
-  <p>
+  <p class="flash-message">
     <%=flash[:message]%>
   </p>
   <%end%>
@@ -42,13 +42,13 @@
     </thead>
     <tbody>
       <%get_sorted_clients(current_user).each do |client|%>
-        <%weeks=get_progress(client).split(" ").first.to_i%>
+        <%weeks=get_progress(client)%>
         <tr>
 
           <th scope="row"><%=client.name%></th>
           <td>
             <div class="progress">
-              <div class="progress-bar <%=weeks>38? 'bg-warning':''%>" style="width:<%=100*weeks/40%>%"><%=get_progress(client)%>
+              <div class="progress-bar <%=weeks>38? 'bg-warning':''%>" style="width:<%=100*weeks/40%>%"><%=get_progress(client).to_s%> weeks
             </div>
             <!--Abstracted this to a helper method
             <% if !client.due_date.nil? %>

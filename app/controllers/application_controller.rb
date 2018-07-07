@@ -206,7 +206,7 @@ end
       else
         progress=0
       end
-      "#{progress} weeks"
+      progress
     end
 
     def get_sorted_clients(user)
