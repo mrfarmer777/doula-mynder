@@ -49,7 +49,7 @@ describe ApplicationController do
       expect(new_user_count).to eq(user_count)
     end
 
-    it "redirects to login when form submitted with empty password" do
+    it "does not create a new user when password is blank" do
       user_count=User.all.count
 
       params={
@@ -62,11 +62,28 @@ describe ApplicationController do
 
       post "/signup", params
       new_user_count=User.all.count
-      expect(last_response.location).to include("/signup")
+      expect(last_response.location).not_to include("/dashboard")
       expect(new_user_count).to eq(user_count)
     end
 
+    it "does not create a new user when username is blank" do
+      user_count=User.all.count
+
+      params={
+        name: "Sally Ride",
+        username: "",
+        email: "sally@ride.com",
+        password: "iluvrockets",
+        company_name: "Rocket Doula",
+      }
+
+      post "/signup", params
+      new_user_count=User.all.count
+      expect(last_response.location).not_to include("/dashboard")
+      expect(new_user_count).to eq(user_count)
+    end
   end
+
 
   describe "Login Page" do
     it "loads the login form" do
@@ -123,6 +140,26 @@ describe ApplicationController do
       click_button "submit"
       expect(page.body).to include("Janis")
       expect(Client.all.last.name).to eq("Janis")
+    end
+
+    it "does not create a new client if name is left blank" do
+      user=User.create(username:'sallyride',name:"Sally Ride",company_name:"Rocket Doulas",password:"password")
+      visit "/login"
+      fill_in(:username, :with =>"sallyride")
+      fill_in(:password, :with =>"password")
+      click_button "submit"
+
+      og_client_count=user.clients.count
+
+      visit '/clients/new'
+      fill_in(:client_name, :with=>"")
+      fill_in(:client_age, :with=>34)
+      fill_in(:client_partner_name, :with=>"Chanandelor Bong")
+      fill_in(:client_address, :with=>"123 W. Elm St., Montana, NB")
+      fill_in(:client_num_children, :with=>5)
+      click_button "submit"
+      expect(page.body).to include("New clients must have a name")
+      expect(user.clients.count).to eq(og_client_count)
     end
   end
 end
