@@ -15,3 +15,7 @@ body{
 .row{
   margin-bottom: 10px;
 }
+
+.flash_message {
+  color:red
+}
