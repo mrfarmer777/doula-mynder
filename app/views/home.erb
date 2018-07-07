@@ -1,3 +1,11 @@
-<h2>Welcome to Doula Mynder</h2>
-<a href="/signup">Sign-up</a>
-<a href="/login">Login</a>
+<div class="jumbotron text-center">
+  <%if logged_in?%>
+    <h2>Welcome back, <%=current_user.name%>!</h2>
+    <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+    <a href="/users/<%=current_user.id%>" class="btn btn-primary">Profile</a>
+  <%else%>
+    <h2>Welcome to Doula Mynder</h2>
+    <a href="/signup">Sign-up</a>
+    <a href="/login">Login</a>
+  <%end%>
+</div>

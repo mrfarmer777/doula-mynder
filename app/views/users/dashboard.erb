@@ -1,74 +1,76 @@
-<div class="row" >
-  <div class="col">
-    <h2>Dashboard</h2>
-  </div>
-</div>
-<%if flash.has?(:message)%>
-<p>
-  <%=flash[:message]%>
-</p>
-<%end%>
-<div class="row" id="user_name">
-  <div class="col">
-    <h5><%=current_user.name%></h5>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6" id="user_data">
-    <%=current_user.company_name%> (<%=current_user.clients.count%> active client<%=current_user.clients.count==1? "":"s"%>)
-  </div>
-  <div class="col-md-6" id="client_controls">
-    <div class="btn-group float-right">
-      <a class="btn btn-primary" href="/clients/new">New Client</a>
-      <a class="btn btn-secondary" href="/users">View Doulas</a>
+<div class="container container-fixed">
+  <div class="row" >
+    <div class="col">
+      <h2>Dashboard</h2>
     </div>
   </div>
-</div>
-<div>
+  <%if flash.has?(:message)%>
+  <p>
+    <%=flash[:message]%>
+  </p>
+  <%end%>
+  <div class="row" id="user_name">
+    <div class="col">
+      <h5><%=current_user.name%></h5>
+    </div>
+  </div>
 
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Client Name</th>
-      <th scope="col">Progress</th>
-      <th scope="col">Age</th>
-      <th scope="col">Due Date</th>
-      <th scope="col">Notes</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%get_sorted_clients(current_user).each do |client|%>
-      <%weeks=get_progress(client).split(" ").first.to_i%>
+  <div class="row">
+    <div class="col-md-6" id="user_data">
+      <%=current_user.company_name%> (<%=current_user.clients.count%> active client<%=current_user.clients.count==1? "":"s"%>)
+    </div>
+    <div class="col-md-6" id="client_controls">
+      <div class="btn-group float-right">
+        <a class="btn btn-primary" href="/clients/new">New Client</a>
+        <a class="btn btn-secondary" href="/users">View Doulas</a>
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+  <table class="table">
+    <thead>
       <tr>
-
-        <th scope="row"><%=client.name%></th>
-        <td>
-          <div class="progress">
-            <div class="progress-bar <%=weeks>38? 'bg-warning':''%>" style="width:<%=100*weeks/40%>%"><%=get_progress(client)%>
-          </div>
-          <!--Abstracted this to a helper method
-          <% if !client.due_date.nil? %>
-            <%=42-(client.due_date.cweek-DateTime.now.cweek)%> Weeks
-          <%else%>
-
-          <%end%>
-
-        -->
-        </td>
-        <td><%=client.age%></td>
-        <td><%=client.due_date%></td>
-        <td><span>CODE</span></td>
-        <td>
-          <div class="btn-group btn-group-sm">
-            <a href="/clients/<%=client.id%>" class="btn btn-secondary">View</a>
-            <a href="/clients/<%=client.id%>/edit" class="btn btn-secondary">Edit</a>
-            <a href="/clients/<%=client.id%>/delete" class="btn btn-danger">Delete</a>
-          </div>
-        </td>
+        <th scope="col">Client Name</th>
+        <th scope="col">Progress</th>
+        <th scope="col">Age</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Actions</th>
       </tr>
-    <%end%>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <%get_sorted_clients(current_user).each do |client|%>
+        <%weeks=get_progress(client).split(" ").first.to_i%>
+        <tr>
+
+          <th scope="row"><%=client.name%></th>
+          <td>
+            <div class="progress">
+              <div class="progress-bar <%=weeks>38? 'bg-warning':''%>" style="width:<%=100*weeks/40%>%"><%=get_progress(client)%>
+            </div>
+            <!--Abstracted this to a helper method
+            <% if !client.due_date.nil? %>
+              <%=42-(client.due_date.cweek-DateTime.now.cweek)%> Weeks
+            <%else%>
+
+            <%end%>
+
+          -->
+          </td>
+          <td><%=client.age%></td>
+          <td><%=client.due_date%></td>
+          <td><span>CODE</span></td>
+          <td>
+            <div class="btn-group btn-group-sm">
+              <a href="/clients/<%=client.id%>" class="btn btn-secondary">View</a>
+              <a href="/clients/<%=client.id%>/edit" class="btn btn-secondary">Edit</a>
+              <a href="/clients/<%=client.id%>/delete" class="btn btn-danger">Delete</a>
+            </div>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div><!--container-->

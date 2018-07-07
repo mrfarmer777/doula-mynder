@@ -6,10 +6,14 @@ body{
   background-color:white;
 }
 
-.container {
+.jumbotron{
+  text-align: center
+}
+.container-fixed {
   background-color:#fff;
   margin-top:20px;
   padding:10px 10px;
+  border-radius: 15px 40px;
 }
 
 .row{
