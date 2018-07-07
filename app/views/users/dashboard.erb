@@ -66,8 +66,13 @@
             <div class="btn-group btn-group-sm">
               <a href="/clients/<%=client.id%>" class="btn btn-secondary">View</a>
               <a href="/clients/<%=client.id%>/edit" class="btn btn-secondary">Edit</a>
-              <a href="/clients/<%=client.id%>/delete" class="btn btn-danger">Delete</a>
+              <form method="POST" action="/clients/<%=client.id%>">
+                <input type='hidden' id='hidden' name='_method' value="DELETE" />
+                <input class="btn btn-sm btn-danger form-control" type="submit" value="Delete" id="submit"  style="border-radius: 0px 5px 5px 0px"/>
+              </form>
             </div>
+
+
           </td>
         </tr>
       <%end%>
