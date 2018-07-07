@@ -1,39 +1,28 @@
-<div class="container container-fixed">
-  <nav>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-      <li class="breadcrumb-item active">View <%=@client.name%></li>
-    </ol>
-  </nav>
-  <div class="card">
+<a href="/dashboard">Dashboard</a>
+<a href="/clients/<%=@client.id%>/edit">Edit Client</a>
+<h2><%=@client.name%></h2>
+<p>
+  Due Date: <%=@client.due_date%><br />
+  Weeks: <%=@client.due_date.cweek-DateTime.now.cweek%> <!---ERB is awesome.-->
+</p>
+
+<div class="client-basics">
+  <p id="age">Age: <%=@client.age%></p>
+  <p id="partner_name">Partner Name: <%=@client.partner_name%></p>
+  <p id="address">Address: <%=@client.address%></p>
+  <p id="num_children">Number of Children: <%=@client.num_children%></p>
+</div>
+
+<div class="client-active-entries">
+  <h3>Active Entries:</h3>
+</div>
+
+<div class="client-previous-births">
+  <h3>Previous Births</h3>
+</div>
 
 
-    <div class="card-header">
-      <h3><%=@client.name%></h3>
-    </div>
-    <div class='card-body'>
-      Due Date: <%=@client.due_date%><br />
-      <%weeks=get_progress(@client)%>
-      <div class="progress" style="width: 12rem;">
-        <div class="progress-bar <%=weeks>38? 'bg-warning':''%>" style="width:<%=100*weeks/40%>%"><%=weeks%> weeks</div>
-      </div>
-    </div>
-    <div class="card-body client-basics">
-      <p id="age">Age: <%=@client.age%></p>
-      <p id="partner_name">Partner Name: <%=@client.partner_name%></p>
-      <p id="address">Address: <%=@client.address%></p>
-      <p id="num_children">Number of Children: <%=@client.num_children%></p>
-    </div>
-    <div class="card-footer">
-      <form method="POST" action="/clients/<%=@client.id%>">
-        <input type='hidden' id='hidden' name='_method' value="DELETE" />
-        <div class="btn-group">
-          <a href="/clients/<%=@client.id%>/edit" class="btn btn-primary">Edit Client</a>
-          <input class="btn btn-danger" type="submit" value="Delete Client" id="submit" />
-        </div>
-      </form>
-    </div> <!--card-footer-->
-  </div> <!--card-->
-
-</div><!--container-->
+<form method="POST" action="/clients/<%=@client.id%>">
+  <input type='hidden' id='hidden' name='_method' value="DELETE" />
+  <input type="submit" value="Delete Client" id="submit" />
+</form>

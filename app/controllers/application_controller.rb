@@ -31,7 +31,7 @@ class ApplicationController<Sinatra::Base
       @user=User.create(params)
       #a non-unique username will cause @user to be nil (user can't be craeted)
       if @user.id.nil?
-        flash[:message]="That username is already in use by another user. Please select another."
+        flash[:message]="Sorry, that username is already in use. Please choose a different username."
         redirect "/signup"
       else
         session[:user_id]=@user.id
@@ -94,7 +94,8 @@ class ApplicationController<Sinatra::Base
   #update action
   #update action
 get "/users/:id/edit" do
-  if current_user.id==params[:id].to_i
+  @user=current_user
+  if @user.id==params[:id].to_i
     erb :'users/edit'
   else
     redirect "/login"
