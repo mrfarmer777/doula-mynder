@@ -1,7 +1,28 @@
-<a href="/users">View All Doulas</a>
-<a href="/dashboard">Dashboard</a>
-<h2><%=@user.name%></h2>
-<h3><%=@user.company_name%></h3>
-<p>
-  Current Clients <%=@user.clients.count%>
-</p>
+<div class="container container-fixed">
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/users">All Doulas</a></li>
+      <li class="breadcrumb-item active"><%=@user.name%>'s Profile</li>
+    </ol>
+  </nav>
+  <div class="card">
+    <div class="card-header">
+      <h3><%=@user.name%></h3>
+    </div>
+    <div class='card-body'>
+      <p>
+        <%=@user.company_name%>
+      </p>
+      <p>
+        Current Clients: <%=@user.clients.count%>
+      </p>
+    </div>
+    <%if @user.id==current_user.id%>
+      <div class="card-footer">
+        <a class="btn btn-primary" href="/users/<%=@user.id%>/edit">Edit Profile</a>
+      </div> <!--card-footer-->
+    <%end%>
+  </div> <!--card-->
+
+</div><!--container-->

@@ -8,12 +8,12 @@
       <li class="breadcrumb-item active">Edit</li>
     </ol>
   </nav>
-  <h2>Edit Client: <%=@client.name%></h2>
   <%if flash.has?(:message)%>
   <p class="flass_message">
     <%=flash[:message]%>
   </p>
   <%end%>
+  <h2>Edit Client: <%=@client.name%></h2>
   <form method="POST" action="/clients/<%=@client.id%>">
     <input type='hidden' id='hidden' name="_method" value="PATCH" />
     <div class="form-row">
