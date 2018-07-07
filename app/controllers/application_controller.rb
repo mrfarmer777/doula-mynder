@@ -29,7 +29,6 @@ class ApplicationController<Sinatra::Base
   post "/signup" do
     if !params[:username].empty? && !params[:password].empty?
       @user=User.create(params)
-      @user.save
       session[:user_id]=@user.id
       redirect "/dashboard"
     else
