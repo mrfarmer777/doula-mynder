@@ -40,10 +40,10 @@ email, or any other method with the owners of this repository before making a ch
 3. For now, I'll perform the merge after I review any pull requests.
 
 ## Authors
-* Matt Farmer [https://www.matt-farmer.com]
+* [Matt Farmer] (https://www.matt-farmer.com)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-##Acknowledgments
+## Acknowledgments
 * My wife, Kelly, for providing the inspiration for this project and for watching the kids while I created it!
