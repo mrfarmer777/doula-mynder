@@ -1,7 +1,7 @@
 source "http://www.rubygems.org"
 
 gem 'sinatra' #for handling of routing and server actions
-gem 'activerecord', '4.2.5', :require => 'active_record' #for ORM
+gem 'activerecord', '4.2.7.1', :require => 'active_record' #for ORM
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord' #enabling AR to interact with Sinatra
 gem 'pry' #for debugging
 gem 'rake' #for task automation
