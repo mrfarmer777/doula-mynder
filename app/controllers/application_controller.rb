@@ -29,6 +29,7 @@ class ApplicationController<Sinatra::Base
   post "/signup" do
     if !params[:username].empty? && !params[:password].empty?
       @user=User.create(params)
+      #a non-unique username will cause @user to be nil (user can't be craeted)
       if @user.id.nil?
         flash[:message]="That username is already in use by another user. Please select another."
         redirect "/signup"
@@ -37,6 +38,7 @@ class ApplicationController<Sinatra::Base
         redirect "/dashboard"
       end
     else
+      flash[:message]="You must sign up with a username and password"
       redirect "/signup"
     end
   end

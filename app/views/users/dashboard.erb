@@ -18,9 +18,11 @@
   <div class="col-md-6" id="user_data">
     <%=current_user.company_name%> (<%=current_user.clients.count%> active client<%=current_user.clients.count==1? "":"s"%>)
   </div>
-  <div class="col-md-6 btn-group ml-auto" id="client_controls">
-    <a class="btn btn-primary" href="/clients/new">New Client</a>
-    <a class="btn btn-secondary" href="/users">View Doulas</a>
+  <div class="col-md-6" id="client_controls">
+    <div class="btn-group float-right">
+      <a class="btn btn-primary" href="/clients/new">New Client</a>
+      <a class="btn btn-secondary" href="/users">View Doulas</a>
+    </div>
   </div>
 </div>
 <div>
