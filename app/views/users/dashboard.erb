@@ -45,7 +45,7 @@
         <th scope="row"><%=client.name%></th>
         <td>
           <div class="progress">
-            <div class="progress-bar <%=weeks>40? 'bg-warning':''%>" style="width:<%=100*weeks/42%>%"><%=get_progress(client)%>
+            <div class="progress-bar <%=weeks>38? 'bg-warning':''%>" style="width:<%=100*weeks/40%>%"><%=get_progress(client)%>
           </div>
           <!--Abstracted this to a helper method
           <% if !client.due_date.nil? %>

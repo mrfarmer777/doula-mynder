@@ -200,7 +200,7 @@ end
 
     def get_progress(client)
       if !client.due_date.nil?
-        progress=42-(client.due_date.cweek-DateTime.now.cweek+(52*(client.due_date.year-DateTime.now.year)))
+        progress=40-(client.due_date.cweek-DateTime.now.cweek+(52*(client.due_date.year-DateTime.now.year)))
       else
         progress=0
       end
