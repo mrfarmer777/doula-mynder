@@ -45,10 +45,17 @@
       <label for="client[address]">Address: </label>
       <input class="form-control" type="text" name="client[address]" id="client_address"value="<%=@client.address%>" />
     </div>
+
     <div class="btn-group">
       <input class="btn btn-primary" type="submit" value="Update Client" id="submit" />
       <a class="btn btn-outline-primary" href="/dashboard">Cancel</a>
     </div>
+
+    <form method="POST" action="/clients/<%=@client.id%>/delete">
+      <input type="hidden" id="hidden" name="_method" value="DELETE" />
+      <input class="submit btn btn-danger" type="submit" id="delete" value="Delete Client" />
+    </form>
+  </form>
 
 
 </div>
