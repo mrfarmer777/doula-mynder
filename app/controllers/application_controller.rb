@@ -210,6 +210,7 @@ end
       progress
     end
 
+    #returns a sorted array of clients by their due date for dashboard view
     def get_sorted_clients(user)
       sorted=user.clients.sort_by {|client| client["due_date"]}
       sorted

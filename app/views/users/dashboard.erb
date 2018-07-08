@@ -1,11 +1,11 @@
-<div class="container container-fixed">
+<div class="container container-fluid">
   <div class="row" >
     <div class="col">
       <h2>Dashboard</h2>
     </div>
   </div>
   <%if flash.has?(:message)%>
-  <p class="flash-message">
+  <p class="flash_message">
     <%=flash[:message]%>
   </p>
   <%end%>
@@ -29,7 +29,7 @@
   <div>
 
   </div>
-  <table class="table">
+  <table class="table table-responsive-md">
     <thead>
       <tr>
         <th scope="col">Client Name</th>

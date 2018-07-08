@@ -9,7 +9,7 @@ body{
 .jumbotron{
   text-align: center
 }
-.container-fixed {
+.container-fluid {
   background-color:#fff;
   margin-top:20px;
   padding:20px 20px;
