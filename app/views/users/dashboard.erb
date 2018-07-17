@@ -11,13 +11,13 @@
   <%end%>
   <div class="row" id="user_name">
     <div class="col">
-      <h5><%=current_user.name%></h5>
+      <h5><%=@user.name%></h5>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6" id="user_data">
-      <%=current_user.company_name%> (<%=current_user.clients.count%> active client<%=current_user.clients.count==1? "":"s"%>)
+      <%=@user.company_name%> (<%=@user.clients.count%> active client<%=@user.clients.count==1? "":"s"%>)
     </div>
     <div class="col-md-6" id="client_controls">
       <div class="btn-group float-right">
@@ -41,7 +41,7 @@
       </tr>
     </thead>
     <tbody>
-      <%get_sorted_clients(current_user).each do |client|%>
+      <%get_sorted_clients(@user).each do |client|%>
         <%weeks=get_progress(client)%>
         <tr>
 
